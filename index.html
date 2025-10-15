@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goodflav – Toko Online</title>
+
+  <!-- Font Gothic/Metal -->
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=MedievalSharp&display=swap" rel="stylesheet">
+
+  <!-- Icon FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'MedievalSharp', cursive;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background-image: url('https://i.ibb.co/hg7MRx3/snake-pattern-bw.jpg');
+      background-size: cover;
+      background-repeat: repeat;
+      opacity: 0.15;
+      animation: moveSnake 40s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveSnake {
+      0% { transform: translate(0, 0) scale(1.1); }
+      50% { transform: translate(-100px, -100px) scale(1.15); }
+      100% { transform: translate(0, 0) scale(1.1); }
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(10,10,10,0.8));
+      border-bottom: 1px solid #333;
+      backdrop-filter: blur(4px);
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin-bottom: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      transition: 0.4s;
+    }
+
+    header img:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 0 25px rgba(255,255,255,0.6);
+    }
+
+    header h1 {
+      font-family: 'Metal Mania', cursive;
+      font-size: 60px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #fff, 0 0 20px #666;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(10, 10, 10, 0.9);
+      padding: 12px 0;
+      border-bottom: 1px solid #222;
+      backdrop-filter: blur(3px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      font-family: 'Metal Mania', cursive;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 20px;
+      text-transform: uppercase;
+      font-size: 14px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #fff;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      padding: 50px 25px;
+      animation: fadeIn 2s ease;
+    }
+
+    .product {
+      background-color: rgba(0, 0, 0, 0.85);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: 0.4s;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    }
+
+    .product:hover {
+      transform: translateY(-8px);
+      border-color: #666;
+      box-shadow: 0 0 20px rgba(255,255,255,0.15);
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      transition: 0.3s;
+    }
+
+    .product img:hover {
+      transform: scale(1.05);
+    }
+
+    .product h3 {
+      font-family: 'Metal Mania', cursive;
+      font-size: 24px;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .price {
+      color: #bbb;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .buy {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid #fff;
+      text-decoration: none;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 13px;
+      border-radius: 5px;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .buy:hover {
+      background-color: #fff;
+      color: #000;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: rgba(10,10,10,0.8);
+      border-top: 1px solid #222;
+      animation: fadeIn 2s ease;
+    }
+
+    .contact h2 {
+      font-family: 'Metal Mania', cursive;
+      font-size: 36px;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .social {
+      color: #bbb;
+    }
+
+    .social a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 22px;
+      margin: 0 12px;
+      transition: 0.3s;
+      font-family: 'MedievalSharp', cursive;
+    }
+
+    .social a:hover {
+      color: #aaa;
+      text-shadow: 0 0 8px #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      border-top: 1px solid #222;
+      font-size: 13px;
+      color: #888;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(3px);
+      font-family: 'MedievalSharp', cursive;
+    }
+
+    #toTop {
+      position: fixed;
+      bottom: 30px;
+      right: 25px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.4s;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      z-index: 99;
+    }
+
+    #toTop:hover {
+      background-color: #fff;
+      color: #000;
+      box-shadow: 0 0 15px #fff;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header id="beranda">
+    <img src="https://i.ibb.co/mqHJ6Mf/goodflav-logo.jpg" alt="Logo Goodflav">
+    <h1>GOODFLAV</h1>
+  </header>
+
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#produk">Produk</a>
+    <a href="#kontak">Sosmed</a>
+  </nav>
+
+  <section id="produk" class="products">
+    <div class="product">
+      <img src="https://i.ibb.co/B4bphhZ/hoodie.jpg" alt="Taro Milk Cream">
+      <h3>Taro Milk Cream</h3>
+      <p class="price">Rp 125.000</p>
+      <a href="https://wa.me/6281288872226?text=Halo%20saya%20ingin%20pesan%20Hoodie%20Goodflav" class="buy">Beli via WA</a>
+    </div>
+
+    <div class="product">
+      <img src="https://i.ibb.co/DGGhVWF/tshirt.jpg" alt="Black Stiky Rice">
+      <h3>Black Stiky Rice</h3>
+      <p class="price">Rp 125.000</p>
+      <a href="https://wa.me/6281288872226?text=Halo%20saya%20ingin%20pesan%20Kaos%20Goodflav" class="buy">Beli via WA</a>
+    </div>
+
+    <div class="product">
+      <img src="https://i.ibb.co/dj7WnRZ/topi.jpg" alt="Tiramisu Cream Cake">
+      <h3>Tiramisu Cream Cake</h3>
+      <p class="price">Rp 125.000</p>
+      <a href="https://wa.me/6281288872226?text=Halo%20saya%20ingin%20pesan%20Topi%20Goodflav" class="buy">Beli via WA</a>
+    </div>
+  </section>
+
+  <section id="kontak" class="contact">
+    <h2>INFO LEBIH LANJUT</h2>
+    <div class="social">
+      <a href="https://instagram.com/goodflav" target="_blank"><i class="fab fa-instagram"></i> @goodflav</a><br>
+      <a href="https://www.tiktok.com/@goodflav2" target="_blank"><i class="fab fa-tiktok"></i> @goodflav2</a><br><br>
+      📍 Jakarta, Indonesia
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 GOODFLAV. All Rights Reserved.</p>
+  </footer>
+
+  <div id="toTop" onclick="scrollToTop()">
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
+
+  <script>
+    const toTop = document.getElementById("toTop");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        toTop.style.display = "flex";
+      } else {
+        toTop.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
